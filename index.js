@@ -11,7 +11,7 @@ const config = require('./utils/config');
 class Server {
     constructor () {
         this.port = process.env.PORT || 9999;
-        this.host = 'https://sajiin-socket-v1.herokuapp.com';
+        this.host = 'localhost';
 
         this.app = express();
         this.http = http.Server(this.app);
