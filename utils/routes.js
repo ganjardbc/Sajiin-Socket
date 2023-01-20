@@ -79,6 +79,29 @@ class Routes{
                 });
             });
 
+            socket.on('printReceipt', (data) => {
+                this.io.emit('printReceipt', data);
+            
+                // if (data) {
+                //     const escpos = require('escpos');
+                //     escpos.USB = require('escpos-usb');
+                //     const device  = new escpos.USB();
+                //     const options = { encoding: "GB18030" };
+                //     const printer = new escpos.Printer(device, options);
+            
+                //     device.open(function(error){
+                //         printer
+                //             .font('a')
+                //             .align('ct')
+                //             .style('bu')
+                //             .size(1, 1)
+                //             .text(data)
+                //             .cut()
+                //             .close();
+                //     });
+                // }
+            });
+
             socket.on('disconnect',()=>{
                 
                 for(let i=0; i < this.users.length; i++){

@@ -4,6 +4,30 @@
     <title>SAJI-IN Socket.IO</title>
   </head>
   <body>
-    <p>SAJI-IN Socket.IO v0.1</p>
+    <h1>SAJI-IN Socket.IO v0.1</h1>
+    <div>=====================</div>
+    <div>
+      <h1>FOR TESTING PRINTER</h1>
+      <input id="input" autocomplete="off" placeholder="Your Message" />
+      <button onclick="sendToPrinter()">SEND TO PRINTER</button>
+    </div>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+      var socket = io()
+      var input = document.getElementById('input');
+
+      socket.on('printReceipt', function(msg) {
+        console.log('receipt', msg)
+      })
+
+      function sendToPrinter() {
+        if (input.value) {
+          socket.emit('printReceipt', input.value)
+          input.value = ''
+        } else {
+          alert('Put your message in the field')
+        }
+      }
+    </script>
   </body>
 </html>

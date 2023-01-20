@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const INDEX = '/index.html';
 
 const routes = require('./utils/routes');
+const printer = require('./utils/printer');
 const config = require('./utils/config');
 
 class Server {
@@ -30,9 +31,14 @@ class Server {
         new routes(this.app, this.socket).routesConfig();
     }
 
+    includePrinter () {
+        new printer(this.app, this.socket).routesConfig();
+    }
+
     appExecute () {
         this.appConfig();
         this.includeRoutes();
+        this.includePrinter();
         this.http;
     }
 }
